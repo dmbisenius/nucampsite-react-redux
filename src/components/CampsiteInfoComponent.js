@@ -17,7 +17,7 @@ import { baseUrl } from '../shared/baseUrl';
         </div>
         );
     }
-    function RenderComments({comments, addComment, campsiteId}) {
+    function RenderComments({comments, postComment, campsiteId}) {
         if (comments) {
             return (
                 <React.Fragment>
@@ -32,7 +32,7 @@ import { baseUrl } from '../shared/baseUrl';
                         }
                     )
                 }
-                 <CommentForm campsiteId={campsiteId} addComment={addComment}/>
+                 <CommentForm campsiteId={campsiteId} postComment={postComment}/>
                 </div>
                 </React.Fragment>
             ); }
@@ -76,7 +76,7 @@ function CampsiteInfo(props){
                     <RenderCampsite campsite={props.campsite} />
                     <RenderComments 
                           comments={props.comments}
-                          addComment={props.addComment}
+                          postComment={props.postComment}
                           campsiteId={props.campsite.id}
                         />
                 </div>
@@ -109,8 +109,7 @@ function CampsiteInfo(props){
     }
     handleSubmit(values){
         this.toggleModal();
-        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
-        console.log(this.props.campsiteId)
+        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
         render() {
             return (
